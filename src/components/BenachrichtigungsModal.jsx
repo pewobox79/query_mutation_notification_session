@@ -1,8 +1,11 @@
-// components/BenachrichtigungModal.tsx
-
 import { useEffect, useRef } from "react";
 
+
 export function BenachrichtigungModal({meldung, onClose}) {
+
+  // Das Modal ist mit dem htmlelement <dialog> erstellt. showModal() ist eine Methode der <dialog> Elemente, die das Modal öffnet.
+  // Source: https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement
+
   const dialogRef = useRef(null);
 
   useEffect(() => {

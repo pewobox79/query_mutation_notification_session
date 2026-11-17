@@ -38,6 +38,7 @@ export function CreateUser() {
         return;
       }
 
+
       await context.client.invalidateQueries({
         queryKey: ["users"],
       });
