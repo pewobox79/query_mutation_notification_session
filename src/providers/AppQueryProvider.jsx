@@ -1,6 +1,3 @@
-// providers/AppQueryProvider.tsx
-
-import {useState} from "react";
 import {
   QueryClient,
   QueryClientProvider,
