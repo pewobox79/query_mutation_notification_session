@@ -1,5 +1,3 @@
-// context/BenachrichtigungContext.tsx
-
 import {
   createContext,
   useState
@@ -13,7 +11,7 @@ export function BenachrichtigungProvider({ children }) {
   const [meldung, setMeldung] = useState(null);
 
   const anzeigen = (neueMeldung) => {
-    console.log("Anzeigen", neueMeldung);
+    // neueMeldung ist ein object mit OBJECTTYPE {type: "", nachricht:""}
     setMeldung(neueMeldung);
   };
 
@@ -22,9 +20,7 @@ export function BenachrichtigungProvider({ children }) {
   };
 
   return (
-    <BenachrichtigungContext.Provider
-      value={{ anzeigen, schliessen }}
-    >
+    <BenachrichtigungContext.Provider value={{ anzeigen, schliessen }} >
       {children}
 
       <BenachrichtigungModal

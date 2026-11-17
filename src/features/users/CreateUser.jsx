@@ -1,12 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
-import {useBenachrichtigung} from "../../context/useBenchrichtigung.jsx";
-
-async function createUser() {
+import {useMutation} from "@tanstack/react-query";
+async function createPost(post) {
   const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'POST',
     body: JSON.stringify({
-      title: 'foo',
-      body: 'bar',
+      ...post,
       userId: 1,
     }),
     headers: {
@@ -21,33 +18,9 @@ async function createUser() {
   return response.json();
 }
 
-export function CreateUser() {
-  const { anzeigen } = useBenachrichtigung();
-
+export function CreatePostForm() {
   const mutation = useMutation({
-    mutationFn: createUser,
-    onSettled: async (_data, error, variables,result, context) => {
-
-      console.log("onSettled", _data, error, context);
-      if (error) {
-        anzeigen({
-          typ: "error",
-          nachricht: "Benutzer konnte nicht gespeichert werden.",
-        });
-
-        return;
-      }
-
-
-      await context.client.invalidateQueries({
-        queryKey: ["users"],
-      });
-
-      anzeigen({
-        typ: "success",
-        nachricht: "Benutzer wurde erfolgreich gespeichert.",
-      });
-    },
+    mutationFn: createPost //attribute werden automatisch durch useMutation weiter gegeben
   });
 
   return (
@@ -55,10 +28,13 @@ export function CreateUser() {
       type="button"
       disabled={mutation.isPending}
       onClick={() =>
-        mutation.mutate({ name: "Max Mustermann" })
+        mutation.mutate({
+          title: 'Mein Title',
+          body: 'Mein body'
+        })
       }
     >
-      Benutzer speichern
+      Post erstellen
     </button>
   );
 }

@@ -7,7 +7,16 @@ import {useBenachrichtigung} from "../context/useBenchrichtigung.jsx";
 
 
 export function AppQueryProvider({children}) {
-  const {anzeigen} = useBenachrichtigung();
+  const {anzeigen} = useBenachrichtigung()
+
+  // Der MutationCache dient als Speicher für Mutationen.
+// Normalerweise interagierst du nicht direkt mit dem MutationCache, sondern verwendest stattdessen einen QueryClient.
+
+// Du kannst den MutationCache abonnieren (subscribe), da er von Subscribable erbt.
+// Dadurch wirst du über definierte und sichere Änderungen am Cache informiert.
+
+// Dazu gehören beispielsweise das Hinzufügen, Entfernen oder
+// Aktualisieren von Mutationen.
 
   const queryClient = new QueryClient({
     mutationCache: new MutationCache({
@@ -15,11 +24,12 @@ export function AppQueryProvider({children}) {
         _data,
         error,
         _variables,
-        _onMutateResult,
-        mutation
+        _result,
+        ctx
       ) => {
+        console.log("onSettled", ctx);
         // Einzelne Mutations können das Modal deaktivieren
-        if (mutation.meta?.benachrichtigen === false) {
+        if (ctx.meta?.benachrichtigen === false) {
           return;
         }
 

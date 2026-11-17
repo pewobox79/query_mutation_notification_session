@@ -6,11 +6,9 @@ import {BenachrichtigungProvider} from "./context/BenachrichtigungsContext.jsx";
 import {AppQueryProvider} from "./providers/AppQueryProvider.jsx";
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <BenachrichtigungProvider>
       <AppQueryProvider>
         <App />
       </AppQueryProvider>
     </BenachrichtigungProvider>
-  </StrictMode>
 )

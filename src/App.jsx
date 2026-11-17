@@ -1,13 +1,13 @@
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import './App.css'
-import {CreateUser} from "./features/users/CreateUser.jsx";
+import {CreatePostForm} from "./features/users/CreateUser.jsx";
 
 function App() {
   return (
     <>
       <section id="center">
-        <CreateUser/>
+        <CreatePostForm/>
       </section>
 
       <div className="ticks"></div>
